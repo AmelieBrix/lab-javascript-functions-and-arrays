@@ -23,7 +23,6 @@ function findLongestWord(array) {
       longestWord = longestWord;
     }
   }
-  console.log("this is the longest Word")
   return longestWord;
 }
 console.log(findLongestWord(words));
@@ -34,6 +33,9 @@ const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 function sumNumbers(arrayNumbers) {
   let sum = 0;
   for(let i = 0; i < arrayNumbers.length; i++) {
+  if (arrayNumbers.length < 1) {
+    return null
+  }
     sum += arrayNumbers[i]; 
   }
   console.log(sum);
@@ -41,9 +43,32 @@ function sumNumbers(arrayNumbers) {
 }
 sumNumbers(numbers);
 
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(mixedValueArray) {
+  let sum3 = 0;
+  mixedValueArray.forEach(element => {
+    if (typeof element === "boolean"  && element === true){
+      sum3 += 1;
+    } 
+    else if (typeof element === "boolean" && element === false) {
+      sum3 += 0;
+    }
+    else if (typeof element === "string" ){
+      sum3 += element.length;
+    }
+    else if (typeof element === "number") {
+    sum3 += element; 
+    }
+    else {
+      throw new Error("Error message goes here");
+    }
+  })
+  return sum3 
+  }
+  
+  console.log(sum(mixedArr));
 
 
 
@@ -79,27 +104,25 @@ console.log(averageWordLength());
 
 // Bonus - Iteration #4.1
 
-const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
-
 function avg(arr) {
-  let sum = 0;
+  let sum2 = 0;
   arr.forEach(element => {
     if (typeof element === "boolean"  && element === true){
-        sum += 1;
+        sum2 += 1;
       } 
     else if (element === false) {
-        sum += 0;
+        sum2 += 0;
       }
     else if (typeof element === "string") {
-    sum += element.length; 
+    sum2 += element.length; 
     }
     else if (!arr)
       return null
     else {
-    sum += element; 
+    sum2 += element; 
    }
   })
-  return sum / (arr.length) // implemented a function in another function
+  return sum2 / (arr.length) 
   }
   
   console.log(avg(mixedArr));
@@ -123,7 +146,6 @@ const wordsUnique = [
   function uniquifyArray(stringArray) {
     let newArray = [];
     stringArray.forEach(element => {
-      //if(newArray.indexOf(element) === -1) {
         if(!newArray.includes(element)) {
         newArray.push(element);
       }
@@ -132,15 +154,6 @@ const wordsUnique = [
   }
 
   console.log(uniquifyArray(wordsUnique));
-
-  //return in a new array
-  // maybe: declare let newArray;
-  // return newArray
-
-
-    // i want it to go through every elemnt in the arrray [i] and to save it in a new array
-    // 
-
 
 
 
@@ -180,8 +193,19 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordArray, wordSearch) {
+  let counter = 0;
+  // we want to create a loop to go through the wordArray 
+  wordArray.forEach(element => {
+    if(element === wordSearch){
+      counter++;
+    }
+  }
+  )
+  return counter;
+}
 
+console.log(howManyTimes(wordsCount, "matter"));
 
 
 // Iteration #8: Bonus
